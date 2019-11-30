@@ -3,4 +3,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile(request):
-	pass
+	return render(request, 'users/login.html')
