@@ -1,3 +1,6 @@
+
+
 {% for problem in problems %}
 	<a href="{% url 'display-problem' problem.id %}">{{problem}}</a>
+	<hr>
 {% endfor %}

@@ -38,6 +38,7 @@ def submit(request, id):
 			messages.error(request, 'cant add submission')
 	return render(request, 'problems/add_submission.html', {'form': SubmitSolutionForm()})
 
+@login_required
 def add_testcase(request):
 	if request.method == 'POST':
 		form = TestCaseForm(request.POST, request.FILES)
@@ -51,6 +52,10 @@ def add_testcase(request):
 
 def problems(request):
 	problems = problem.objects.all()
+	# if request.method == 'GET':
+	# 	order = request.GET.get('order_by',False)
+	# 	if order:
+	# 		problems = problem.objects.all().order_by(str(order))
 	return render(request, 'problems/display_problems.html', {'problems':problems})
 
 def display_problem(request, id):
@@ -62,6 +67,7 @@ def add_problem(request):
 	if request.method == 'POST':
 		form = ProblemForm(request.POST)
 		if form.is_valid():
+			form = form.save(commit=False)
 			form.author = request.user
 			form.save()
 			messages.success(request, 'Added problem statement')

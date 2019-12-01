@@ -127,3 +127,5 @@ LOGIN_REDIRECT_URL = 'user-profile'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'problems/')
 MEDIA_URL = '/problems/'
+
+LOGIN_URL = '/login/'

@@ -1,5 +1,14 @@
 {% extends 'homepage/index.html' %}
 
+
 {% block content %}
+	{% if user.is_authenticated %}
+		<a href="{% url 'user-logout' %}">Logout</a>
+	{% else %}
+		<a href="{% url 'user-login' %}">Login</a>
+	{% endif %}
+	<hr>
+	<a href="{% url 'all-problems' %}">All problems</a>
+	<br><br><br>
 	Working With Bootstrap on homepage
 {% endblock content %}

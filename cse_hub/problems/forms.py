@@ -9,7 +9,7 @@ class SubmitSolutionForm(ModelForm):
 class ProblemForm(ModelForm):
 	class Meta:
 		model = problem
-		fields = ['quesCode', 'description','tags']
+		fields = ['quesCode', 'description','tags','time']
 
 class TestCaseForm(ModelForm):
 	class Meta:
