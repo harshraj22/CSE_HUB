@@ -8,7 +8,7 @@ from evaluation.evaluate import evaluate
 
 # login is required to submit solution
 @login_required
-def submit(request, problem_id):
+def submit(request, id):
 	# if this page was tried to access while submitting a form (adding submission to a problem)
 	if request.method == 'POST':
 		form = SubmitSolutionForm(request.POST, request.FILES)
@@ -16,14 +16,15 @@ def submit(request, problem_id):
 			# create and instance of form but don't save it
 			form = form.save(commit=False)
 			form.author = request.user
+			form.problem_code = problem.objects.get(id=id)
 			form.save()
 
 			cur_user = request.user
 			cur_user.profile.problems_tried += 1
-			cur_prob = problem.objects.get(id=problem_id)
+			cur_prob = problem.objects.get(id=id)
 			cur_prob.total_submissions += 1
 
-			verdict = evaluate(form.submission_code, problem_id)
+			verdict = evaluate(form.submission_code, id)
 			if verdict == 'AC':
 				cur_user.profile.problems_solved += 1
 				cur_prob.successful_submissions += 1

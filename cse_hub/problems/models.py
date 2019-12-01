@@ -4,10 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 # import jsonfield
 
-class submissions(models.Model):
-	submission_code = models.FileField(upload_to='submissions/')
-	author = models.ForeignKey(User, on_delete=models.CASCADE)
-
 class questionTag(models.Model):
 	tag = models.CharField(max_length=15)
 
@@ -23,10 +19,22 @@ class problem(models.Model):
 	created_on = models.DateField(default=datetime.date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	tags = models.ManyToManyField(questionTag)
+	time = models.FloatField(choices=[(0.5,0.5),(1.0,1.0)], default=1.0)
 
 	def __str__(self):
 		return str(self.quesCode)+" by "+str(self.author.username)
 
+
+class submissions(models.Model):
+	'''
+		For submited code for evaluation
+	'''
+	submission_code = models.FileField(upload_to='submissions/')
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	problem_code = models.ForeignKey(problem, on_delete=models.CASCADE, null=True)
+
+	def __str(self):
+		return 'solutin by '+str(author)
 
 class testCase(models.Model):
 	testcase = models.FileField(upload_to='problem_statements/testcases')

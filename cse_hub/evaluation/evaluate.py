@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from problems.models import problem, testCase
 
-def check(ques, sol, file):
+def check(ques, sol, file, time):
 	'''
 		Returns verdict of submitted code being ran on given testcase and corresponding solution
 	'''
@@ -22,10 +22,14 @@ def check(ques, sol, file):
 			if line:
 				return 'CE'
 
-	# Just for refrence, prints the full command for file being checked
+	# Just for refrence, prints the full command for file being checked to the terminal
 	print(f'evaluating using : cat {ques} | {command} {file}')
 	p = subprocess.Popen(f'cat {ques} | {command} {file}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	output, error = p.communicate()
+	
+	try:
+		output, error = p.communicate(timeout=time)
+	except subprocess.TimeoutExpired:
+		return 'TLE'
 
 	output = str(output, 'utf-8')
 	print(f'output is :- {output}')
@@ -33,6 +37,7 @@ def check(ques, sol, file):
 	with open(sol) as f:
 		exp_output = f.read()
 
+	# Prints output to the terminal
 	print(f'expected output is :- {exp_output}')
 
 	if output == exp_output:
@@ -40,15 +45,18 @@ def check(ques, sol, file):
 
 	return 'WA'
 
-def evaluate(file, problem_id):
+def evaluate(file, id):
 	'''
-		Returns verdict of submitted code file tested over testcases of problem_id
+		Returns verdict of submitted code file tested over testcases of id
 	'''
-	cur_problem = problem.objects.get(id=problem_id)
+	cur_problem = problem.objects.get(id=id)
 	testcases = cur_problem.testcase_set.all()
 
 	for test in testcases:
-		cur_verdict = check(str(test.testcase.path), str(test.solution.path), file)
+		cur_verdict = check(str(test.testcase.path), str(test.solution.path), file, cur_problem.time)
+
+		# Just for reference
+		print(f'\n\n\nand returned verdict for current testcase is {cur_verdict}\n\n\n')
 		if cur_verdict != 'AC':
 			return cur_verdict
 
