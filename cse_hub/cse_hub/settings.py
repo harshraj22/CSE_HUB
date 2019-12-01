@@ -125,5 +125,5 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'user-profile'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'problems/problem_statements')
-MEDIA_URL = '/problems/problem_statements/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'problems/')
+MEDIA_URL = '/problems/'

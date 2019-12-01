@@ -1,0 +1,18 @@
+Ques Code : {{ problem.quesCode }}
+<hr>
+Problem Description : {{ problem.description }}
+<hr>
+Date Created : {{ problem.created_on }}
+<hr>
+Author : {{ problem.author }}
+<hr>
+Tried : {{ problem.total_submissions }}
+<hr>
+Success : {{ problem.successful_submissions }}
+<hr>
+Tags:
+{% for tag in problem.tags.all %}
+	{{ tag }}
+{% endfor %}
+
+<a href="{% url 'submit' problem.id %}">Submit</a>
