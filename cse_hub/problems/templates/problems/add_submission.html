@@ -1,3 +1,6 @@
+<a href="{% url 'all-problems' %}">All problems</a>
+<hr>
+
 <form method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	{{form.as_p}}
