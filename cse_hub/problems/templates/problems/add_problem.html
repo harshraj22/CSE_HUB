@@ -1,3 +1,11 @@
+
+{% if messages %}
+	{% for message in messages %}
+		{{message}} <br>
+	{% endfor %}
+{% endif %}
+
+
 <form method="POST">
 	{% csrf_token %}
 	{{ form.as_p }}

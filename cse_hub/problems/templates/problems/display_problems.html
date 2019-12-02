@@ -1,4 +1,9 @@
 
+{% if messages %}
+	{% for message in messages %}
+		{{message}} <br>
+	{% endfor %}
+{% endif %}
 
 {% for problem in problems %}
 	<a href="{% url 'display-problem' problem.id %}">{{problem}}</a>
