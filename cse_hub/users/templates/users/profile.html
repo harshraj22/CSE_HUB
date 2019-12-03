@@ -1,13 +1,41 @@
 {% extends 'homepage/index.html' %}
+{% load mathfilters %}
 
 {% block content-unindent %}
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
+          ['AC',      {{request.user.profile.problems_solved}}]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 	<div class="row">
 		<div class="col-md-1 sm-1"></div>
 		<div class="col-md-4 sm-6">
+			User Image
+			<br><br><br>
 			Username : {{request.user.username}} 
+			<br>
+			Other user datas
 			<br>
 
 			<a class="btn btn-info my-2" href="#">My Submissions</a>
 		</div>
+	    <div id="piechart" class="col-md-4 sm-6" style="width: 900px; height: 500px;"></div>
 	</div>
 {% endblock content-unindent %}
