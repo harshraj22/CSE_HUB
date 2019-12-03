@@ -7,8 +7,14 @@
 		{% endfor %}
 	{% endif %}
 
+	<strong>
+		<div m-auto>Problem Code</div> <div class="float-right">Total &nbsp; %AC</div>
+	</strong>
+	<br>
 	{% for problem in problems %}
-		<a href="{% url 'display-problem' problem.id %}">{{problem}}</a>
+		<a href="{% url 'display-problem' problem.id %}" class="btn btn-light">{{problem}}</a> 
+		{% widthratio problem.successful_submissions problem.total_submissions 1.0 as res %}
+		<div class="float-right">{{problem.total_submissions}} &nbsp; &nbsp; &nbsp; {{ res }}</div> &nbsp;
 		<hr>
 	{% endfor %}
 {% endblock content %}
