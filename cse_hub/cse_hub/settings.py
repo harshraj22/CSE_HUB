@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'evaluation.apps.EvaluationConfig',
     'homepage.apps.HomepageConfig',
     'problems.apps.ProblemsConfig',
@@ -129,3 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'problems/')
 MEDIA_URL = '/problems/'
 
 LOGIN_URL = '/login/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

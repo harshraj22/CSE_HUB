@@ -1,7 +1,13 @@
-{{request.user.username}} : profile page
-<hr>
-<a href="{% url 'home' %}">Home</a>
-<hr>
-<a href="{% url 'all-problems' %}">All questions</a>
-<hr>
-<a href="#">My Submissions</a>
+{% extends 'homepage/index.html' %}
+
+{% block content-unindent %}
+	<div class="row">
+		<div class="col-md-1 sm-1"></div>
+		<div class="col-md-4 sm-6">
+			Username : {{request.user.username}} 
+			<br>
+
+			<a class="btn btn-info my-2" href="#">My Submissions</a>
+		</div>
+	</div>
+{% endblock content-unindent %}

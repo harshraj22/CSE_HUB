@@ -1,18 +1,26 @@
-Ques Code : {{ problem.quesCode }}
-<hr>
-Problem Description : {{ problem.description }}
-<hr>
-Date Created : {{ problem.created_on }}
-<hr>
-Author : {{ problem.author }}
-<hr>
-Tried : {{ problem.total_submissions }}
-<hr>
-Success : {{ problem.successful_submissions }}
-<hr>
-Tags:
-{% for tag in problem.tags.all %}
-	{{ tag }}
-{% endfor %}
+{% extends 'homepage/index.html' %}
 
-<a href="{% url 'submit-solution' problem.id %}">Submit</a>
+{% block content %}
+
+	<h2>{{ problem.quesCode }}</h2>
+	<hr>
+	<strong>Problem Description :</strong> <br><br> {{ problem.description }}
+	<br><br><hr>
+	Date Created : {{ problem.created_on }}
+	<hr>
+	Author : {{ problem.author }}
+	<hr>
+	Tried : {{ problem.total_submissions }}
+	&nbsp;
+	Success : {{ problem.successful_submissions }}
+	<hr>
+	Tags:
+	{% for tag in problem.tags.all %}
+		{{ tag }} &nbsp;
+	{% endfor %}
+
+	<div class='float-right'>
+		<a class="btn btn-success" href="{% url 'submit-solution' problem.id %}">Submit</a>
+		<!-- <button class="btn btn-success" >Submit</button> -->
+	</div>
+{% endblock content %}
