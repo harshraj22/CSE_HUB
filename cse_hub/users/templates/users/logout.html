@@ -1,1 +1,6 @@
-<a href="{% url 'user-login' %}">Login</a>
+{% extends 'homepage/index.html' %}
+
+{% block content %}
+	<p class="text-success">Logged out successfully.</p>
+	<!-- <a href="{% url 'user-login' %}">Login</a> -->
+{% endblock content %}
