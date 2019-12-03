@@ -1,15 +1,21 @@
-<a href="{% url 'all-problems' %}">All problems</a>
-<hr>
+{% extends 'homepage/index.html' %}
 
-{% if messages %}
-	{% for message in messages %}
-		{{message}} <br>
-	{% endfor %}
-{% endif %}
+{% block content %}
 
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+				{{message}}
+			</div>
+			<br>
+		{% endfor %}
+	{% endif %}
 
-<form method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{form.as_p}}
-	<button type="submit">Submit</button>
-</form>
+	<div class="form-group">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button class="btn btn-success" type="submit">Submit</button>
+		</form>
+	</div>
+{% endblock content %}
