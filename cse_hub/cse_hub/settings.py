@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crispy_forms',
+    'mathfilters',
     'evaluation.apps.EvaluationConfig',
     'homepage.apps.HomepageConfig',
     'problems.apps.ProblemsConfig',
