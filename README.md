@@ -2,6 +2,9 @@
 
 Based on [php version](https://github.com/harshraj22/contest)
 
+##### Idea :
+To have a website that caters all needs that a CSE UG has.
+
 ##### What works ?
 
 * adding problems
@@ -37,3 +40,6 @@ Based on [php version](https://github.com/harshraj22/contest)
 
 * create a virtual environment and activate it (google it)
 * Install dependencies into it ```pip3 insall -r requirements.txt```
+
+##### Screenshots :
+![Screenshot from 2019-12-04 02-29-03](https://user-images.githubusercontent.com/46635452/70089367-f0fab600-163d-11ea-81d9-fa1441ac95ac.png)
