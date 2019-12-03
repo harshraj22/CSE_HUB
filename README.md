@@ -43,3 +43,6 @@ To have a website that caters all needs that a CSE UG has.
 
 ##### Screenshots :
 ![Screenshot from 2019-12-04 02-29-03](https://user-images.githubusercontent.com/46635452/70089367-f0fab600-163d-11ea-81d9-fa1441ac95ac.png)
+
+![Screenshot from 2019-12-04 03-31-38](https://user-images.githubusercontent.com/46635452/70093670-ed1f6180-1646-11ea-9b39-3c318603edbe.png)
+
