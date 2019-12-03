@@ -1,5 +1,7 @@
 {% extends 'homepage/index.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 	{% if messages %}
@@ -14,7 +16,7 @@
 	<div class="form-group">
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			{{form.as_p}}
+			{{form|crispy}}
 			<button class="btn btn-success" type="submit">Submit</button>
 		</form>
 	</div>
