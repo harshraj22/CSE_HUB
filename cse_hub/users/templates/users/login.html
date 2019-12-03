@@ -1,6 +1,16 @@
-<form method="POST">
-	{% csrf_token %}
-	{{form.as_p}}
+{% extends 'homepage/index.html' %}
 
-	<button type="submit">Login</button>
-</form>
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-4">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form|crispy }}
+
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+		</div>
+	</div>
+{% endblock content %}
