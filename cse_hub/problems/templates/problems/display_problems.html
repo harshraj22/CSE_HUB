@@ -1,11 +1,14 @@
+{% extends 'homepage/index.html' %}
 
-{% if messages %}
-	{% for message in messages %}
-		{{message}} <br>
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			{{message}} <br>
+		{% endfor %}
+	{% endif %}
+
+	{% for problem in problems %}
+		<a href="{% url 'display-problem' problem.id %}">{{problem}}</a>
+		<hr>
 	{% endfor %}
-{% endif %}
-
-{% for problem in problems %}
-	<a href="{% url 'display-problem' problem.id %}">{{problem}}</a>
-	<hr>
-{% endfor %}
+{% endblock content %}
