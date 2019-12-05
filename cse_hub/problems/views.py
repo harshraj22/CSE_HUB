@@ -12,7 +12,13 @@ def submit(request, id):
 	# if this page was tried to access while submitting a form (adding submission to a problem)
 	if request.method == 'POST':
 		form = SubmitSolutionForm(request.POST, request.FILES)
-		if form.is_valid():
+		filename = request.FILES['submission_code'].name
+
+		# If the file is not cpp/python
+		if not filename.endswith('.cpp') and not filename.endswith('.py'):
+			messages.error(request, 'Wrong file type')
+
+		elif form.is_valid():	
 			# create and instance of form but don't save it
 			form = form.save(commit=False)
 			form.author = request.user
