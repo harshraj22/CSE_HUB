@@ -10,7 +10,7 @@
 		<title>CSE-HUB</title>
 	{% endif %}
 </head>
-<body>
+<body style=" overflow-x: hidden;">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -29,14 +29,17 @@
 		    	</li>
 		    	<li class="nav-item">
 		      	{% if user.is_authenticated %}
-			        <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
-			   		</li>
-				    	<li class="nav-item">
+			        <a class="nav-link" href="{% url 'add-problem' %}">Add Problems</a>
+				    </li>
+			    	<li class="nav-item">
 			        <a class="nav-link" href="{% url 'user-profile' %}">Profile</a>
+			   		</li>
+			    	<li class="nav-item">
+			        <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
 			    {% else %}
 			        <a class="nav-link" href="{% url 'user-login' %}">Login</a>
 		      	{% endif %}
-		    	</li>
+			    	</li>
 		    	<li class="nav-item dropdown">
 		        	<!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 		          	<!-- Dropdown -->
@@ -67,11 +70,15 @@
 		{% block content-unindent %}
 
 		{% endblock %}
-	<footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="bottom: 0; position: fixed; width: 100%; color: #e05ea0;">
-    	<div class="container text-center">
-    		<small>Copyright &copy; Your Website</small>
-    	</div>
-	</footer>
+	<div class="container-fluid">
+		<div class="row">
+			<footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="bottom: 0; position: fixed; width: 100%; color: #e05ea0;">
+		    	<div class="container text-center">
+		    		<small>Copyright &copy; Your Website</small>
+		    	</div>
+			</footer>
+		</div>
+	</div>
 
 </body>
 </html>
