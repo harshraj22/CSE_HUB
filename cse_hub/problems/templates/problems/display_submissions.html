@@ -1,0 +1,17 @@
+{% extends 'homepage/index.html' %}
+{% load mathfilters %}
+
+{% block content %}
+
+	<div class="card" style="width: 35rem;">
+		<ul class="list-group list-group-flush">
+			{% for code in codes %}
+				<div class="card-body ">
+					<li class="list-group-item border border-primary">{{code.problem_code}}<a class="btn btn-primary float-right" href="">View</a></li>
+				</div>
+			{% endfor %}
+		</ul>
+	</div>
+	<br>
+
+{% endblock content %}

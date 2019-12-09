@@ -3,8 +3,15 @@ from .forms import ProblemForm, TestCaseForm, SubmitSolutionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import problem, testCase
+from .models import submissions as submitted_codes
 
 from evaluation.evaluate import evaluate
+
+@login_required
+def submissions(request, id):
+	codes = submitted_codes.objects.filter(author = request.user)
+
+	return render(request, 'problems/display_submissions.html', {'codes':codes})
 
 # login is required to submit solution
 @login_required

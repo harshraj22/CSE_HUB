@@ -34,8 +34,8 @@ class submissions(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	problem_code = models.ForeignKey(problem, on_delete=models.CASCADE, null=True)
 
-	def __str(self):
-		return 'solutin by '+str(author)
+	def __str__(self):
+		return 'solutin by '+str(self.author.username)
 
 class testCase(models.Model):
 	testcase = models.FileField(upload_to='problem_statements/testcases')
