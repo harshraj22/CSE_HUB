@@ -11,9 +11,10 @@
 
 				var data = google.visualization.arrayToDataTable([
 					['Verdict', 'Count'],
-					['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
+					// ['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
+					['WA',  {{request.user.profile.problems_WA}}],
 					['AC',      {{request.user.profile.problems_solved}}],
-					['TLE', 0]
+					['TLE',  {{request.user.profile.problems_TLE}}]
 				]);
 
 				var options = {
