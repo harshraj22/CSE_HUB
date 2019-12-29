@@ -41,6 +41,10 @@ def submit(request, id):
 			if verdict == 'AC':
 				cur_user.profile.problems_solved += 1
 				cur_prob.successful_submissions += 1
+			elif verdict == 'TLE':
+				cur_user.profile.problems_TLE += 1
+			elif verdict == 'WA':
+				cur_user.profile.problems_WA += 1
 
 			cur_prob.save()
 			cur_user.profile.save()
