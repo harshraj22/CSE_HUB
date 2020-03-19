@@ -58,14 +58,15 @@ def submit(request, id):
 @login_required
 def add_testcase(request):
 	if request.method == 'POST':
-		form = TestCaseForm(request.POST, request.FILES)
+		form = TestCaseForm(request.POST, request.FILES, user=request.user)
 		if form.is_valid():
 			form.save()
 			messages.success(request, 'Added testcase')
 		else:
 			print(form.errors)
 			messages.error(request, 'cant add testcase')
-	return render(request, 'problems/add_testcase.html', {'form':TestCaseForm()})
+	# return render(request, 'problems/add_testcase.html', {'form':form})
+	return render(request, 'problems/add_testcase.html', {'form':TestCaseForm(request.POST, request.FILES, user=request.user)})
 
 def problems(request):
 	problems = problem.objects.all()
