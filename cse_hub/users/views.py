@@ -13,4 +13,3 @@ def profile(request, username):
     except ObjectDoesNotExist:
         requested_user = None
         return HttpResponse("<h3> 404 User not found<h3> <p> This is returned from HttpResponse, make a template in home app, and render that page and return that before final presentation. </p>")
-	# return render(request, 'users/profile.html')
