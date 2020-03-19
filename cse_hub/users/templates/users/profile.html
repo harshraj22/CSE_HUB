@@ -12,9 +12,9 @@
 				var data = google.visualization.arrayToDataTable([
 					['Verdict', 'Count'],
 					// ['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
-					['WA',  {{request.user.profile.problems_WA}}],
-					['AC',      {{request.user.profile.problems_solved}}],
-					['TLE',  {{request.user.profile.problems_TLE}}]
+					['WA',  {{user.profile.problems_WA}}],
+					['AC',      {{user.profile.problems_solved}}],
+					['TLE',  {{user.profile.problems_TLE}}]
 				]);
 
 				var options = {
@@ -32,12 +32,14 @@
 		<div class="col-md-4 sm-6">
 			User Image
 			<br><br><br>
-			Username : {{request.user.username}} 
+			Username : {{user.username}} 
 			<br>
 			Other user datas
 			<br>
 
-			<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a>
+			{% if user.username == request.user.username%}
+				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a>
+			{% endif %}
 		</div>
 			<div id="piechart" class="col-md-4 sm-6" style="width: 900px; height: 500px;"></div>
 	</div>
