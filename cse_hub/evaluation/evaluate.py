@@ -1,13 +1,13 @@
 import subprocess
 import os 
 from django.conf import settings
-from problems.models import problem, testCase
+from problems.models import Problem, TestCase
 
 def check(ques, sol, file, time):
 	'''
 		Returns verdict of submitted code being ran on given testcase and corresponding solution
 	'''
-	# Just for refrence, prints the file being checked
+	# Just for refrence, prints the file being checked in terminal
 	print('Checking the file ', file, '_'*27)
 	
 	file = os.path.join(settings.BASE_DIR, 'problems', str(file))
@@ -49,7 +49,7 @@ def evaluate(file, id):
 	'''
 		Returns verdict of submitted code file tested over testcases of id
 	'''
-	cur_problem = problem.objects.get(id=id)
+	cur_problem = Problem.objects.get(id=id)
 	testcases = cur_problem.testcase_set.all()
 
 	for test in testcases:
