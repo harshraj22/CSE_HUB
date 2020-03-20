@@ -75,7 +75,11 @@ def add_testcase(request):
 	return render(request, 'problems/add_testcase.html', {'form':TestCaseForm(user=request.user)})
 
 def problems(request):
-	problems = Problem.objects.all()
+	if 'sortBy' in request.GET.keys() and request.GET['sortBy'] == 'total':
+		problems = Problem.objects.all().order_by('-total_submissions')
+	else:
+		problems = Problem.objects.all()
+
 	# if request.method == 'GET':
 	# 	order = request.GET.get('order_by',False)
 	# 	if order:

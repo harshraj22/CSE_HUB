@@ -8,7 +8,7 @@
 	{% endif %}
 
 	<strong>
-		<div m-auto>Problem Code</div> <div class="float-right">Total &nbsp; %AC</div>
+		<div m-auto>Problem Code</div> <div class="float-right"><a href="{% url 'all-problems' %}?sortBy=total">Total &nbsp;</a> %AC</div>
 	</strong>
 	<br>
 	{% for problem in problems %}
