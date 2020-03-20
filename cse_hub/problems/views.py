@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Problem, TestCase
 from .models import Submissions as submitted_codes
 
-from evaluation.evaluate import evaluate
+from .evaluate import evaluate
 
 @login_required
 def submissions(request, id):
