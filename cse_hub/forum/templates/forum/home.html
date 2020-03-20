@@ -8,9 +8,10 @@
 	{% endif %}
 
 	<br>
+		<a href="{% url 'create-post' %}" class="btn btn-success">Create New Post</a> 
+	<br> <br> <br> <br>
 	{% for post in posts %}
 		<a href="{% url 'display-post' post.id %}" class="btn btn-light">{{ post.title }}</a> 
-		
 		<hr>
 	{% endfor %}
 {% endblock content %}
