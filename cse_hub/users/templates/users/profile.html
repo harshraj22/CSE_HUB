@@ -38,7 +38,8 @@
 			<br>
 
 			{% if user.username == request.user.username%}
-				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a>
+				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a> <br>
+				<a class="btn btn-info my-2" href="{% url 'user-profile-edit' user.username %}">Edit Profile</a>
 			{% endif %}
 		</div>
 			<div id="piechart" class="col-md-4 sm-6" style="width: 900px; height: 500px;"></div>
