@@ -52,3 +52,6 @@ use ```python3 manage.py createsuperuser``` to create admin credentials and then
 
 ![Screenshot from 2019-12-04 03-31-38](https://user-images.githubusercontent.com/46635452/70093670-ed1f6180-1646-11ea-9b39-3c318603edbe.png)
 
+
+#### Further Reading :
+* [Writing tests](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing)
