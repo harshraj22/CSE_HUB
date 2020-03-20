@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'forum',
     'crispy_forms',
     'mathfilters',
-    'evaluation.apps.EvaluationConfig',
     'homepage.apps.HomepageConfig',
     'problems.apps.ProblemsConfig',
     'users.apps.UsersConfig',
