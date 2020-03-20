@@ -30,6 +30,7 @@ To have a website that caters all needs that a CSE UG has.
 * ```admin/```
 * ```''```
 * ```profile/<username>```
+* ```profile/<username>/edit```
 * ```problems/add```
 * ```problems/display/<int:problem_id>```
 * ```problems/add/testcase```
