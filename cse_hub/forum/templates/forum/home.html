@@ -1,0 +1,16 @@
+{% extends 'homepage/index.html' %}
+
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			{{message}} <br>
+		{% endfor %}
+	{% endif %}
+
+	<br>
+	{% for post in posts %}
+		<a href="{% url 'display-post' post.id %}" class="btn btn-light">{{ post.title }}</a> 
+		
+		<hr>
+	{% endfor %}
+{% endblock content %}
