@@ -6,7 +6,9 @@ from django.contrib import messages
 from .models import Post
 
 def home(request):
-	return HttpResponse('<h3> Forum Home Page, returning HttpResponse instead of rendering html page </h3>')
+	posts = Post.objects.all()
+	return render(request, 'forum/home.html', {'posts':posts})
+	# return HttpResponse('<h3> Forum Home Page, returning HttpResponse instead of rendering html page </h3>')
 
 @login_required
 def create_post(request):
