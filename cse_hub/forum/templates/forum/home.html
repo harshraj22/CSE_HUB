@@ -12,7 +12,7 @@
 	{% endif %}
 
 	<br>
-		<a href="{% url 'create-post' %}" class="btn btn-success">Create New Post</a> 
+		<a href="{% url 'create-post' %}" class="btn btn-success"><i class="fa fa-pencil"></i> Create New Post</a> 
 	<br> <br> <br> <br>
 	{% for post in posts %}
 		<a href="{% url 'display-post' post.id %}" class="font-weight-bold" style="text-decoration: none; color: #0C0C0C;"><h4>{{ post.title }}</h4></a> 
