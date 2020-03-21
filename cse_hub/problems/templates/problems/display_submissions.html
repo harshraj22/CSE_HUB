@@ -7,7 +7,7 @@
 		<ul class="list-group list-group-flush">
 			{% for code in codes %}
 				<div class="card-body ">
-					<li class="list-group-item border border-primary">{{code.problem_code}}<a class="btn btn-primary float-right" href="">View</a></li>
+					<li class="list-group-item border border-primary">{{code.problem_code}}<a class="btn btn-primary float-right" href="{% url 'display-submitted-code' code.author.username code.id %}">View {{code.id}}</a></li>
 				</div>
 			{% endfor %}
 		</ul>

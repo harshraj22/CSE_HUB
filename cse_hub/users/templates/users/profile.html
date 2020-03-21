@@ -46,7 +46,7 @@
 			<br>
 
 			{% if user.username == request.user.username%}
-				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a> <br>
+				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.username %}">My Submissions</a> <br>
 				<a class="btn btn-info my-2" href="{% url 'user-profile-edit' user.username %}">Edit Profile</a>
 			{% endif %}
 		</div>
