@@ -1,5 +1,6 @@
 {% extends 'homepage/index.html' %}
 
+{% block content %}
 	{% if messages %}
 		{% for message in messages %}
 			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
