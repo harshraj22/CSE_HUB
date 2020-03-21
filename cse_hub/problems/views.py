@@ -4,14 +4,40 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Problem, TestCase
 from .models import Submissions as submitted_codes
-
+from django.contrib.auth.models import User
+import os
+from django.conf import settings
+from django.http import Http404, HttpResponse
 from .evaluate import evaluate
 
 @login_required
-def submissions(request, id):
-	codes = submitted_codes.objects.filter(author = request.user)
+def submissions(request, username):
+	user = User.objects.get(username = username)
+	codes = submitted_codes.objects.filter(author = user)
 
 	return render(request, 'problems/display_submissions.html', {'codes':codes})
+
+def download_submission(request, id):
+	solution = submitted_codes.objects.get(id=id)
+	file_path = settings.BASE_DIR + solution.submission_code.url
+
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
+	raise Http404
+
+def display_submission(request, username, id):
+	solution = submitted_codes.objects.get(id=id)
+	# file_path = os.path.join(settings.BASE_DIR,solution.submission_code.url)
+	file_path = settings.BASE_DIR + solution.submission_code.url
+	print(f'\nAccessing file: {file_path}\n')
+
+	with open(file_path) as f:
+		code = f.read()
+
+	return render(request, 'problems/display_a_submission.html', {'solution':solution, 'code':code})
 
 # login is required to submit solution
 @login_required
