@@ -15,14 +15,15 @@ To have a website that caters all needs that a CSE UG has.
 * updation of table for problems upon adding solution by the user(successful/total submissions), ie. each problem stores count of AC/ WA to itself
 * adding predefined tags to problems
 * We've got a discussion forum with comments functioning !!
+* User can now edit profile !! (but currently we don't store anything editable)
+* Now user can see/download all submited codes. How cool is that !!
 
 ##### What lacks ?
 
 * Only mode of submission is through file upload
 * No work is done for creating a contest
 * frontend for various pages
-* Display all solutions by a user and for a question
-* Editing of: profile/ problem/ added testcase
+* Editing of: problem/ added testcase
 * User registration (signUp)
 
 ##### Mapped urls :
@@ -35,6 +36,10 @@ To have a website that caters all needs that a CSE UG has.
 * ```problems/display/<int:problem_id>```
 * ```problems/add/testcase```
 * ```problems/submit/<int:problem_id>```
+* ```submit/<int:id>/```
+* ```submissions/<str:username>/```
+* ```submissions/<str:username>/view/<int:id>/```
+* ```submissions/download/<int:id>/```
 * ```problems```
 * ```login```
 * ```logout```
