@@ -103,8 +103,15 @@ def add_problem(request):
 			form.save()
 			messages.success(request, 'Added problem statement')
 		else:
+			# print on backend terminal, for debugging purpose
+			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
+
+			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message
 			messages.error(request, 'cant upload your problem')
+
+			# list unpacking to show the first error as pop-up message
+			messages.error(request, *form_error)
 
 	# return the page with a message and a new empty form
 	return render(request, 'problems/add_problem.html', {'form':ProblemForm()})
