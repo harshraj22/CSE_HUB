@@ -7,6 +7,7 @@
 	{% if messages %}
 		{% for message in messages %}
 			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				{{message}}
 			</div>
 			<br>
@@ -15,15 +16,22 @@
 
 	<h2> {{ post.title }} </h2>
 	<br>
-	<p> {{ post.description }} </p>
-	<small> {{ post.author.username }} </small>
+	<div class="pl-5">
+		<p> {{ post.description }} </p>
+		<small><a href="{% url 'user-profile' post.author.username %}" class="btn btn-outline-info btn-sm">{{ post.author.username }}</a> </small>		
+	</div>
+	<hr>
 
 	<br><br><br>
 	<h5> Comments: </h5>
 
-	{% for comment in comments %}
-		<br> {{ comment.description }} <br>
-	{% endfor %}
+	<div class="mx-5 px-5">
+		{% for comment in comments %}
+			<p> {{ comment.description }} <a href="{% url 'user-profile' comment.author.username %}" class="float-right">{{ comment.author.username }}</a> <hr size="5"> </p>
+		{% endfor %}
+	</div>
+	<hr>
+
 	<br><br><br>
 	<form action="{% url 'comment' post.id %}" method="POST">
 		{% csrf_token %}

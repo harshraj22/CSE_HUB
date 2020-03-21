@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm
@@ -23,8 +23,18 @@ def create_post(request):
 			form.author = request.user
 			form.save()
 			messages.success(request, 'Created Post Successfully')
+			return redirect(home)
 		else:
+			# print on backend terminal, for debugging purpose
+			print(f'\n Error while creating post:\n{form.errors.as_data()} \n')
+
+			form_error = list(form.errors.as_data().values())[0][0]
+			# if user filled form was invalid, send a error message
 			messages.error(request, 'Error Creating Post')
+
+			# list unpacking to show the first error as pop-up message
+			messages.error(request, *form_error)
+
 	return render(request, 'forum/add_post.html', {'form':PostForm()})
 
 # displays a certain post with its comments details
@@ -54,6 +64,15 @@ def comment(request, post_id):
 			# display a success message
 			messages.success(request, 'comment added Successfully')
 		else:
+			# print on backend terminal, for debugging purpose
+			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
+
+			form_error = list(form.errors.as_data().values())[0][0]
+			# if user filled form was invalid, send a error message
 			messages.error(request, 'error adding comment')
+
+			# list unpacking to show the first error as pop-up message
+			messages.error(request, *form_error)
+			
 	# after a successful comment, redirect the user to same page with comment updated
 	return HttpResponseRedirect(reverse('display-post', kwargs={'post_id':post_id}))

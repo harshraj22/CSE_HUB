@@ -9,7 +9,7 @@ class QuestionTag(models.Model):
 	'''
 		class for storing Problem Tags
 	'''
-	tag = models.CharField(max_length=15)
+	tag = models.CharField(max_length=15, unique=True)
 
 	def __str__(self):
 		return self.tag
@@ -21,7 +21,7 @@ class Problem(models.Model):
 	'''
 		Class for storing Problems and its testcase and other data
 	'''
-	quesCode = models.CharField(max_length=10)
+	quesCode = models.CharField(max_length=10, unique=True)
 	description = models.TextField()
 	# description = jsonfield.JSONField()
 
