@@ -22,6 +22,9 @@ def profile_edit(request, username):
 	if username != request.user.username:
 		return HttpResponseRedirect(reverse('user-profile-edit', kwargs={'username':request.user.username}))
 		
+	# ===========Implement the followint logic ==================
+	# if request.method == 'POST':
+
 	context = {'form': ProfileUpdateForm()}
 	return render(request, 'users/profile_edit.html', context)
 	# return HttpResponse(f"Editing profile of {request.user.username}")

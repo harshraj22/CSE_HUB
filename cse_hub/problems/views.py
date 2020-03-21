@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .forms import ProblemForm, TestCaseForm, SubmitSolutionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -128,6 +129,7 @@ def add_problem(request):
 			form.author = request.user
 			form.save()
 			messages.success(request, 'Added problem statement')
+			return redirect(reverse('add-testcase'))
 		else:
 			# print on backend terminal, for debugging purpose
 			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')

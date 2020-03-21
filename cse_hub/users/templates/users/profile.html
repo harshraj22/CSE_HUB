@@ -2,6 +2,15 @@
 {% load mathfilters %}
 
 {% block content-unindent %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script type="text/javascript">
 			{% if user.profile.problems_TLE or user.profile.problems_solved or user.profile.problems_WA %}
