@@ -1,0 +1,21 @@
+{% extends 'homepage/index.html' %}
+{% load mathfilters %}
+
+{% block content %}
+
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<h3>
+		<strong> 404 </strong> The requested resource was not found !.
+	</h3>
+
+	<br>
+
+{% endblock content %}
