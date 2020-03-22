@@ -14,7 +14,7 @@ def profile(request, username):
         return render(request, 'users/profile.html', context)
     except ObjectDoesNotExist:
         requested_user = None
-        return HttpResponse("<h3> 404 User not found<h3> <p> This is returned from HttpResponse, make a template in home app, and render that page and return that before final presentation. </p>")
+        return render(request, 'homepage/404.html')
 
 @login_required
 def profile_edit(request, username):
