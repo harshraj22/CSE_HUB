@@ -11,10 +11,10 @@ class Post(models.Model):
 	date_created = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return f'{self.title}'
+		return '{self.title}'
 
 	def __repr__(self):
-		return f'{self.title} by {self.author.username}'
+		return '{self.title} by {self.author.username}'
 
 
 class Comment(models.Model):
@@ -26,7 +26,7 @@ class Comment(models.Model):
 	description = models.TextField()
 
 	def __str__(self):
-		return f'on {self.post.id} by {self.author.username}'
+		return 'on {self.post.id} by {self.author.username}'
 
 	def __repr__(self):
 		return self.__str__()

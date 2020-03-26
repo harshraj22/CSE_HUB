@@ -10,7 +10,7 @@ from django.urls import reverse
 def home(request):
 	posts = Post.objects.all()
 	return render(request, 'forum/home.html', {'posts':posts})
-	
+
 
 # user is required to be logged in to create a new post
 @login_required
@@ -26,7 +26,7 @@ def create_post(request):
 			return redirect(home)
 		else:
 			# print on backend terminal, for debugging purpose
-			print(f'\n Error while creating post:\n{form.errors.as_data()} \n')
+			print('\n Error while creating post:\n{form.errors.as_data()} \n')
 
 			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message
@@ -65,7 +65,7 @@ def comment(request, post_id):
 			messages.success(request, 'comment added Successfully')
 		else:
 			# print on backend terminal, for debugging purpose
-			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
+			print('\n Error while adding problem:\n{form.errors.as_data()} \n')
 
 			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message
@@ -73,6 +73,6 @@ def comment(request, post_id):
 
 			# list unpacking to show the first error as pop-up message
 			messages.error(request, *form_error)
-			
+
 	# after a successful comment, redirect the user to same page with comment updated
 	return HttpResponseRedirect(reverse('display-post', kwargs={'post_id':post_id}))
