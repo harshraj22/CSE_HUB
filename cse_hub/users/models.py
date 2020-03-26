@@ -14,6 +14,6 @@ class Profile(models.Model):
 		return self.user.username
 
 	def __repr__(self):
-		return f'Profile of {self.user.username}'
+		return 'Profile of {self.user.username}'
 
 admin.site.register(Profile)

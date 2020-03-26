@@ -33,7 +33,7 @@ def display_submission(request, username, id):
 	solution = submitted_codes.objects.get(id=id)
 	# file_path = os.path.join(settings.BASE_DIR,solution.submission_code.url)
 	file_path = settings.BASE_DIR + solution.submission_code.url
-	print(f'\nAccessing file: {file_path}\n')
+	print('\nAccessing file: {file_path}\n')
 
 	with open(file_path) as f:
 		code = f.read()
@@ -55,7 +55,7 @@ def submit(request, id):
 		if not filename.endswith('.cpp') and not filename.endswith('.py'):
 			messages.error(request, 'Wrong file type')
 
-		elif form.is_valid():	
+		elif form.is_valid():
 			# create and instance of form but don't save it
 			form = form.save(commit=False)
 			form.author = request.user
@@ -95,7 +95,7 @@ def add_testcase(request):
 		else:
 			print(form.errors)
 			messages.error(request, 'Couldnt add testcase')
-	
+
 	# pass the loggedin user in form, this will be rendered in forms.py and only those problems will
 	# be displayed whose author is current loggedin user. Thus current user can't add testcase to problems
 	# that someone else has added
@@ -132,7 +132,7 @@ def add_problem(request):
 			return redirect(reverse('add-testcase'))
 		else:
 			# print on backend terminal, for debugging purpose
-			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
+			print('\n Error while adding problem:\n{form.errors.as_data()} \n')
 
 			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message
