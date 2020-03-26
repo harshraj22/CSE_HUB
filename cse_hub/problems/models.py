@@ -27,21 +27,21 @@ class Problem(models.Model):
 
 	total_submissions = models.IntegerField(default=0)
 	successful_submissions = models.IntegerField(default=0)
-	
+
 	created_on = models.DateField(default=datetime.date.today)
 	# if user is deleted, delete this problem automatically
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
-	
+
 	# one question can have many tags, and one tag can belong to many questions
 	tags = models.ManyToManyField(QuestionTag)
 	# time-limit for the current problem
 	time = models.FloatField(choices=[(0.5,0.5),(1.0,1.0)], default=1.0)
 
 	def __str__(self):
-		return f'{self.quesCode}'
+		return '{self.quesCode}'
 
 	def __repr__(self):
-		return f'{self.quesCode} by {self.author.username}'
+		return '{self.quesCode} by {self.author.username}'
 
 
 class Submissions(models.Model):
@@ -53,10 +53,10 @@ class Submissions(models.Model):
 	problem_code = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
 
 	def __str__(self):
-		return f'by {self.author.username}'
+		return 'by {self.author.username}'
 
 	def __repr__(self):
-	 return f'Solution for {self.problem_code} by {self.author.username}'
+	 return 'Solution for {self.problem_code} by {self.author.username}'
 
 class TestCase(models.Model):
 	'''
@@ -72,7 +72,7 @@ class TestCase(models.Model):
 		return self.question.quesCode
 
 	def __repr__(self):
-		return f'Testcase for {self.question.quesCode}'
+		return 'Testcase for {self.question.quesCode}'
 
 admin.site.register(QuestionTag)
 admin.site.register(Problem)
