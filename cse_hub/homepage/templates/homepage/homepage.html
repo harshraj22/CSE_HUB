@@ -2,5 +2,24 @@
 
 
 {% block content %}
-	Working With Bootstrap on homepage
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+    {% if user.is_authenticated %}
+        Working on style
+	{% else %}
+	<h1>New User? Register Here</h1>
+	<form method='POST'>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type = "submit"><a href="{% url 'user-login' %}">Login</a></button>
+	</form>
+	{% endif %}
+
 {% endblock content %}

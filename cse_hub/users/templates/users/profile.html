@@ -2,40 +2,63 @@
 {% load mathfilters %}
 
 {% block content-unindent %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+		<script type="text/javascript">
+			{% if user.profile.problems_TLE or user.profile.problems_solved or user.profile.problems_WA %}
+				google.charts.load('current', {'packages':['corechart']});
+				google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+				function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
-          ['AC',      {{request.user.profile.problems_solved}}]
-        ]);
+					var data = google.visualization.arrayToDataTable([
+						['Verdict', 'Count'],
+						// ['non-AC',  {{request.user.profile.problems_tried|sub:request.user.profile.problems_solved}}],
+						['WA',  {{user.profile.problems_WA}}],
+						['AC',      {{user.profile.problems_solved}}],
+						['TLE',  {{user.profile.problems_TLE}}]
+					]);
 
-        var options = {
-          title: 'My Daily Activities'
-        };
+					var options = {
+						title: 'Overall Graph',
+						colors: ['#ee3b3b', '#00FF00', '#ffb90f']
+					};
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+					var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data, options);
-      }
-    </script>
+					chart.draw(data, options);
+				}
+			{% else %}
+				// let target = document.getElementById('piechart');
+				// console.log(target, ' is the target');
+				// alert(document.getElementById('piechart'));
+				// target.innerHTML = 'User Has No Submissions'
+				// alert(document.getElementById('piechart'), 'new')
+			{% endif %}
+		</script>
 	<div class="row">
 		<div class="col-md-1 sm-1"></div>
 		<div class="col-md-4 sm-6">
 			User Image
 			<br><br><br>
-			Username : {{request.user.username}} 
+			Username : {{user.username}} 
 			<br>
 			Other user datas
 			<br>
 
-			<a class="btn btn-info my-2" href="{% url 'user-submissions' user.id %}">My Submissions</a>
+			{% if user.username == request.user.username%}
+				<a class="btn btn-info my-2" href="{% url 'user-submissions' user.username %}">My Submissions</a> <br>
+				<a class="btn btn-info my-2" href="{% url 'user-profile-edit' user.username %}">Edit Profile</a>
+			{% endif %}
 		</div>
-	    <div id="piechart" class="col-md-4 sm-6" style="width: 900px; height: 500px;"></div>
+		<div id="piechart" class="col-md-4 sm-6" style="width: 900px; height: 500px;"></div>
 	</div>
 {% endblock content-unindent %}

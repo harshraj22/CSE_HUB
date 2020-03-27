@@ -3,12 +3,15 @@
 {% block content %}
 	{% if messages %}
 		{% for message in messages %}
-			{{message}} <br>
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
 		{% endfor %}
 	{% endif %}
 
 	<strong>
-		<div m-auto>Problem Code</div> <div class="float-right">Total &nbsp; %AC</div>
+		<div m-auto>Problem Code</div> <div class="float-right"><a href="{% url 'all-problems' %}?sortBy=total">Total &nbsp;</a> %AC</div>
 	</strong>
 	<br>
 	{% for problem in problems %}

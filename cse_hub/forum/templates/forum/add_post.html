@@ -14,10 +14,10 @@
 		{% endfor %}
 	{% endif %}
 
-
 	<form method="POST">
 		{% csrf_token %}
 		{{ form|crispy }}
 		<button type="submit">Add</button>
 	</form>
+
 {% endblock content %}

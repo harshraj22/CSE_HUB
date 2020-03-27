@@ -1,0 +1,23 @@
+{% extends 'homepage/index.html' %}
+
+{% block content %}
+
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	
+	<strong>Problem: </strong><a href="{% url 'display-problem' solution.problem_code.id %}" class="btn btn-outline-success btn-sm">{{solution.problem_code}}</a>
+	<a href="{% url 'download-submission' solution.id %}" class="float-right btn btn-sm btn-primary">Download</a>
+
+	<br><br><br>
+	<pre>
+<textarea type="text" rows="24" cols="127">
+{{ code }}
+</textarea>
+	</pre>
+{% endblock content %}
