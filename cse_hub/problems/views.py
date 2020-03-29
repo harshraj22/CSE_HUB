@@ -33,7 +33,7 @@ def display_submission(request, username, id):
 	solution = submitted_codes.objects.get(id=id)
 	# file_path = os.path.join(settings.BASE_DIR,solution.submission_code.url)
 	file_path = settings.BASE_DIR + solution.submission_code.url
-	print('\nAccessing file: {file_path}\n')
+	print(f'\nAccessing file: {file_path}\n')
 
 	with open(file_path) as f:
 		code = f.read()
@@ -132,7 +132,7 @@ def add_problem(request):
 			return redirect(reverse('add-testcase'))
 		else:
 			# print on backend terminal, for debugging purpose
-			print('\n Error while adding problem:\n{form.errors.as_data()} \n')
+			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
 
 			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message
