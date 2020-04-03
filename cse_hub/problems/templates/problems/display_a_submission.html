@@ -10,8 +10,30 @@
 			</div>
 		{% endfor %}
 	{% endif %}
+
+	<style type="text/css">
+		textarea {
+		  background: url(http://i.imgur.com/2cOaJ.png);
+		  background-attachment: local;
+		  background-repeat: no-repeat;
+		  padding-left: 35px;
+		  padding-top: 10px;
+		  border-color: #ccc;
+
+		  font-size: 13px;
+		  line-height: 16px;
+		}
+
+		.textarea-wrapper {
+		  display: inline-block;
+		  background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+		  background-size: 100% 32px;
+		  background-position: left 10px;
+		}
+	</style>
 	
 	<strong>Problem: </strong><a href="{% url 'display-problem' solution.problem_code.id %}" class="btn btn-outline-success btn-sm">{{solution.problem_code}}</a>
+
 	{% if solution.verdict == 'WA' %}
 		&nbsp; <i class="fa fa-times text-danger text-bold" aria-hidden="true"> WA</i>
 	{% elif solution.verdict == 'AC' %}
@@ -22,12 +44,43 @@
 		&nbsp; <i class="fa fa-question text-secondary text-bold" aria-hidden="true"> Comp. Error</i>
 	{% endif %}
 
+
+	<button class="float-right btn btn-sm btn-success mx-3" id="copy_code" >copy</button>
+
 	<a href="{% url 'download-submission' solution.id %}" class="float-right btn btn-sm btn-primary">Download</a>
 
 	<br><br><br>
 	<pre>
-<textarea type="text" rows="24" cols="127">
+<textarea type="text" rows="30" cols="122" id="submitted_code">
 {{ code }}
 </textarea>
+
+	<script type="text/javascript">
+		function clearSelection() {
+			if (window.getSelection) {window.getSelection().removeAllRanges();}
+			else if (document.selection) {document.selection.empty();}
+		}
+
+		var copyTextareaBtn = document.querySelector('#copy_code');
+
+		copyTextareaBtn.addEventListener('click', function(event) {
+			var copyTextarea = document.querySelector('#submitted_code');
+			copyTextarea.focus();
+			copyTextarea.select();
+
+			try {
+		    	var successful = document.execCommand('copy');
+		    	var msg = successful ? 'successful' : 'unsuccessful';
+		    	console.log('Copying text command was ' + msg);
+			} catch (err) {
+		    	console.log('Oops, unable to copy');
+			}
+
+			// clearSelection();
+
+		});
+		
+	</script>
+
 	</pre>
 {% endblock content %}
