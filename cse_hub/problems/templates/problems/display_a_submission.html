@@ -12,6 +12,16 @@
 	{% endif %}
 	
 	<strong>Problem: </strong><a href="{% url 'display-problem' solution.problem_code.id %}" class="btn btn-outline-success btn-sm">{{solution.problem_code}}</a>
+	{% if solution.verdict == 'WA' %}
+		&nbsp; <i class="fa fa-times text-danger text-bold" aria-hidden="true"> WA</i>
+	{% elif solution.verdict == 'AC' %}
+		&nbsp; <i class="fa fa-check text-success text-bold" aria-hidden="true"> AC</i>
+	{% elif solution.verdict == 'TLE' %}
+		&nbsp; <i class="fa fa-clock-o text-warning text-bold" aria-hidden="true"> TLE</i>
+	{% elif solution.verdict == 'CE' %}
+		&nbsp; <i class="fa fa-question text-secondary text-bold" aria-hidden="true"> Comp. Error</i>
+	{% endif %}
+
 	<a href="{% url 'download-submission' solution.id %}" class="float-right btn btn-sm btn-primary">Download</a>
 
 	<br><br><br>

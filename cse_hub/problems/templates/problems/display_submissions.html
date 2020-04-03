@@ -16,7 +16,18 @@
 		<ul class="list-group list-group-flush">
 			{% for code in codes %}
 				<div class="card-body ">
-					<li class="list-group-item border border-primary">{{code.problem_code}}<a class="btn btn-primary float-right" href="{% url 'display-submitted-code' code.author.username code.id %}">View</a></li>
+					<li class="list-group-item border border-primary">{{code.problem_code}}
+							{% if code.verdict == 'WA' %}
+								&nbsp; <i class="fa fa-times text-danger text-large" aria-hidden="true"></i>
+							{% elif code.verdict == 'AC' %}
+								&nbsp; <i class="fa fa-check text-success text-large" aria-hidden="true"></i>
+							{% elif code.verdict == 'TLE' %}
+								&nbsp; <i class="fa fa-clock-o text-warning text-large" aria-hidden="true"></i>
+							{% elif code.verdict == 'CE' %}
+								&nbsp; <i class="fa fa-question text-secondary text-large" aria-hidden="true"></i>
+							{% endif %}
+						<a class="btn btn-primary btn-sm float-right" href="{% url 'display-submitted-code' code.author.username code.id %}">View</a>
+					</li>
 				</div>
 			{% endfor %}
 		</ul>
