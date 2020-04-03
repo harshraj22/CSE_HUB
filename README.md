@@ -62,7 +62,7 @@ use ```python3 manage.py createsuperuser``` to create admin credentials and then
 ##### Screenshots :
 ![Screenshot from 2020-04-04 01-23-33](https://user-images.githubusercontent.com/46635452/78400011-94bb9900-7613-11ea-84f1-e0712c2dfbb6.png)
 
-![Screenshot from 2020-04-04 01-30-41](https://user-images.githubusercontent.com/46635452/78400254-fa0f8a00-7613-11ea-9616-c8766574c538.png)
+![Screenshot from 2020-04-04 03-38-36](https://user-images.githubusercontent.com/46635452/78408857-d48b7c00-7625-11ea-9853-e9a2e7103944.png)
 
 
 ![Screenshot from 2020-04-04 01-26-35](https://user-images.githubusercontent.com/46635452/78399939-75bd0700-7613-11ea-8379-a64929c35c93.png)
