@@ -85,14 +85,15 @@
 		</div>
 	</nav>
 
+	{% block content-unindent %}
+
+	{% endblock %}
+
 	<div class="container p-5">
 		{% block content %}
 
 		{% endblock %}
 	</div>
-		{% block content-unindent %}
-
-		{% endblock %}
 	<div class="container-fluid">
 		<div class="row">
 			<footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="bottom: 0; position: fixed; width: 100%; color: #e05ea0;">

@@ -27,3 +27,6 @@ def home(request):
         form = RegistrationForm()
     args = {'form':form}
     return render(request, 'homepage/homepage.html', args)
+
+def code_editor(request):
+    return render(request, 'homepage/editor.html')
