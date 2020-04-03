@@ -51,6 +51,7 @@ class Submissions(models.Model):
 	submission_code = models.FileField(upload_to='submissions/')
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	problem_code = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
+	verdict = models.CharField(max_length=5, default='other')
 
 	def __str__(self):
 		return f'by {self.author.username}'
