@@ -60,6 +60,8 @@ To have a website that caters all needs that a CSE UG has.
 use ```python3 manage.py createsuperuser``` to create admin credentials and then go to ```localhost:8080/admin``` after ```python3 manage.py runserver``` to log-in as admin. Create some user accounts/ profile pages/ question tags etc and play along with them, logging in from ```localhost:8080``` (you may use credentials of user you just created, but make sure you've created his/her profile as well from admin pannel)
 
 ##### Screenshots :
+![Screenshot from 2020-04-08 02-37-01](https://user-images.githubusercontent.com/46635452/78719645-e29d0d80-7941-11ea-8795-3329ac5db082.png)
+
 ![Screenshot from 2020-04-04 01-23-33](https://user-images.githubusercontent.com/46635452/78400011-94bb9900-7613-11ea-84f1-e0712c2dfbb6.png)
 
 ![Screenshot from 2020-04-04 03-38-36](https://user-images.githubusercontent.com/46635452/78408857-d48b7c00-7625-11ea-9853-e9a2e7103944.png)
