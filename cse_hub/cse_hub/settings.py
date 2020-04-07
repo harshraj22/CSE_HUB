@@ -133,6 +133,8 @@ LOGIN_REDIRECT_URL = 'home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'problems/')
 MEDIA_URL = '/problems/'
 
+PROFILE_PIC_STATIC_ROOT = os.path.join(BASE_DIR, 'users/static/users/')
+
 LOGIN_URL = '/login/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

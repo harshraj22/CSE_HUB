@@ -5,16 +5,21 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .forms import ProfileUpdateForm
+from django.conf import settings
+import os
+
 
 @login_required
 def profile(request, username):
-    try:
-        requested_user = User.objects.get(username=username)
-        context = {'user': requested_user}
-        return render(request, 'users/profile.html', context)
-    except ObjectDoesNotExist:
-        requested_user = None
-        return render(request, 'homepage/404.html')
+	try:
+		requested_user = User.objects.get(username=username)
+		image_url = requested_user.profile.profile_pic
+		context = {'user': requested_user, 'pic': image_url}
+
+		return render(request, 'users/profile.html', context)
+	except ObjectDoesNotExist:
+		requested_user = None
+		return render(request, 'homepage/404.html')
 
 @login_required
 def profile_edit(request, username):
