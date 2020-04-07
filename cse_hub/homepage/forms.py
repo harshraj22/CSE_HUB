@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required = True)
+    profile_pic = forms.ImageField(required=False)
 
     class Meta:
         model = User
@@ -13,7 +14,8 @@ class RegistrationForm(UserCreationForm):
             'last_name',
             'email',
             'password1',
-            'password2'
+            'password2',
+            'profile_pic'
         )
 
     def save(self, commit=True):
