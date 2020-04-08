@@ -60,7 +60,7 @@ def submit(request, id):
 			form = form.save(commit=False)
 			form.author = request.user
 			form.problem_code = Problem.objects.get(id=id)
-			# form.save()
+			form.save()
 
 			cur_user = request.user
 			cur_user.profile.problems_tried += 1
@@ -68,8 +68,10 @@ def submit(request, id):
 			cur_prob.total_submissions += 1
 
 			verdict = evaluate(form.submission_code, id)
-			form.verdict = verdict
-			form.save()
+			current_submitted_code = submitted_codes.objects.get(id=form.id)
+
+			current_submitted_code.verdict = verdict
+			current_submitted_code.save()
 			
 			if verdict == 'AC':
 				cur_user.profile.problems_solved += 1
