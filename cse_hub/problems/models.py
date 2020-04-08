@@ -16,7 +16,6 @@ class QuestionTag(models.Model):
 	def __repr__(self):
 	 return self.__str__()
 
-
 class Problem(models.Model):
 	'''
 		Class for storing Problems and its testcase and other data
@@ -43,7 +42,6 @@ class Problem(models.Model):
 	def __repr__(self):
 		return f'{self.quesCode} by {self.author.username}'
 
-
 class Submissions(models.Model):
 	'''
 		For submited code for evaluation
@@ -52,6 +50,7 @@ class Submissions(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	problem_code = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
 	verdict = models.CharField(max_length=5, default='other')
+	created_on = models.DateTimeField(default=datetime.datetime.now)
 
 	def __str__(self):
 		return f'by {self.author.username}'
