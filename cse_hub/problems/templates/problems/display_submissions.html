@@ -27,6 +27,7 @@
 								&nbsp; <i class="fa fa-question text-secondary text-large" aria-hidden="true"></i>
 							{% endif %}
 						<a class="btn btn-primary btn-sm float-right" href="{% url 'display-submitted-code' code.author.username code.id %}">View</a>
+						<div class="float-right mx-3">{{ code.created_on }}</div>
 					</li>
 				</div>
 			{% endfor %}
