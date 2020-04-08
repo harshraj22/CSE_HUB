@@ -30,5 +30,5 @@ def home(request):
     args = {'form':form}
     return render(request, 'homepage/homepage.html', args)
 
-def code_editor(request):
-    return render(request, 'homepage/editor.html')
+def code_editor(request, code='Your Code Here'):
+    return render(request, 'homepage/editor.html', {'code':code})

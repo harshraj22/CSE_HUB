@@ -4,12 +4,18 @@
 {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'homepage/editor.css' %}">
 
-    <div id="editor">Cook Your Code Here</div>
+    <div id="editor">
+        {% if code %}
+            {{code}}
+        {% else %}
+            Cook Your Code Here
+        {% endif %}
+    </div>
 
-    <div id="language" class="bg-dark text-white text-bold">
+    <div id="language" class="bg-dark text-white text-bold py-2 h5">
         Language: &nbsp;
-        <label for="python"><input type="radio" name="language" id="python" value="python" checked="checked">Python</label> &nbsp;
-        <label for="cpp"><input type="radio" name="language" id="c_cpp" value="c_cpp">cpp</label>
+        <label for="python"><input type="radio" name="language" id="python" value="python" checked="checked"> Python</label> &nbsp;
+        <label for="cpp"><input type="radio" name="language" id="c_cpp" value="c_cpp"> cpp</label>
         <button class="float-right mr-3 btn btn-sm" id="copy">Copy</button>
     </div>
         
@@ -58,6 +64,7 @@
 
         $(document).ready(function() {
             $('#block_content_div').removeClass();
+            $('body').css('padding-bottom', '');
         });
     </script>
 
