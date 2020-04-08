@@ -29,6 +29,7 @@
 	{% endfor %}
 
 	<div class='float-right'>
+		<a class="btn btn-success" href="{% url 'code-editor' %}">Code</a> &nbsp;
 		<a class="btn btn-success" href="{% url 'submit-solution' problem.id %}">Submit</a>
 		<!-- <button class="btn btn-success" >Submit</button> -->
 	</div>
