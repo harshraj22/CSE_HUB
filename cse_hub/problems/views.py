@@ -128,9 +128,13 @@ def add_problem(request):
 		form = ProblemForm(request.POST)
 		# if form is valid, save the form and send success message
 		if form.is_valid():
-			form = form.save(commit=False)
-			form.author = request.user
-			form.save()
+			new_problem = form.save(commit=False)
+			new_problem.author = request.user
+			new_problem.save()
+
+			# https://stackoverflow.com/a/38495003/10127204
+			form.save_m2m()
+
 			messages.success(request, 'Added problem statement')
 			return redirect(reverse('add-testcase'))
 		else:

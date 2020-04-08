@@ -23,9 +23,9 @@
 	&nbsp;
 	Success : {{ problem.successful_submissions }}
 	<hr>
-	Tags:
+	Tags: &nbsp;
 	{% for tag in problem.tags.all %}
-		{{ tag }} &nbsp;
+		{{ tag }}, &nbsp;
 	{% endfor %}
 
 	<div class='float-right'>
