@@ -12,7 +12,7 @@ class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	problems_tried = models.IntegerField(default=0)
 
-	profile_pic = models.ImageField(storage=fs, upload_to='profile_pics', default='defalut.png')
+	profile_pic = models.ImageField(storage=fs, upload_to='profile_pics', default='default.png')
 
 	problems_solved = models.IntegerField(default=0)
 	problems_TLE = models.IntegerField(default=0)
