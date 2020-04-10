@@ -12,11 +12,11 @@
 		{% endfor %}
 	{% endif %}
 
-	<p>
-		Editing profile page of {{ request.user.username }}, More functionalities to be added
-		Please make sure to edit views. Currently it is not validating/ accepting form responses.
-	</p>
-	<form method="POST">
+	<h5>
+		Editing profile page of {{ request.user.username }}.
+	</h5>
+	<br>
+	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form|crispy }}
 
