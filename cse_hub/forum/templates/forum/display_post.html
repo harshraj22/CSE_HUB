@@ -18,7 +18,7 @@
 	<br>
 	<div class="pl-5">
 		<p> {% autoescape off %} {{ post.description }} {% endautoescape %} </p>
-		<small><a href="{% url 'user-profile' post.author.username %}" class="btn btn-outline-info btn-sm">{{ post.author.username }}</a> </small>		
+		<small><a href="{% url 'user-profile' post.author.username %}" class="btn btn-outline-info btn-sm float-right">{{ post.author.username }}</a> </small>	{% if post.author == request.user %} <a href="{% url 'delete-post' post.id %}" style="text-decoration: none;" class="float-right pr-2"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> &nbsp; </a> {% endif %} 	
 	</div>
 	<hr>
 

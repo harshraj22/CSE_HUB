@@ -84,6 +84,17 @@ def delete_comment(request, comment_id):
 		messages.error(request, 'Not allowed')
 	else:
 		comment.delete()
-		messages.success(request, 'Deleted Successfully')
+		messages.success(request, 'Deleted Comment Successfully')
 	# redirect to same page: https://stackoverflow.com/a/35796330/10127204
 	return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@login_required
+def delete_post(request, post_id):
+	post = Post.objects.get(id=post_id)
+	if post.author.id != request.user.id:
+		messages.error(request, 'Not allowed')
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+	else:
+		post.delete()
+		messages.success(request, 'Deleted Post Successfully')
+	return HttpResponseRedirect(reverse('forum-home'))
