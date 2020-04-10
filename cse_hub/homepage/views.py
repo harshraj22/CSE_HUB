@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from homepage.forms import RegistrationForm
+from users.forms import RegistrationForm
 from django.contrib import messages
 from django.urls import reverse
 from users.models import Profile

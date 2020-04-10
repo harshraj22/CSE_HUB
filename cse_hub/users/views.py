@@ -5,7 +5,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .forms import ProfileUpdateForm
+from django.contrib import messages
 from django.conf import settings
+from .models import Profile
 import os
 
 
@@ -27,8 +29,16 @@ def profile_edit(request, username):
 	if username != request.user.username:
 		return HttpResponseRedirect(reverse('user-profile-edit', kwargs={'username':request.user.username}))
 		
+	profile = Profile.objects.get(user=request.user)
 	# ===========Implement the followint logic ==================
-	# if request.method == 'POST':
+	if request.method == 'POST':
+		form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
+		if form.is_valid():
+			profile = form.save(commit=False)
+			profile.save()
+			messages.success(request, 'Succefully Updated')
+		else:
+			messages.error(request, 'Error updating')
 
 	context = {'form': ProfileUpdateForm()}
 	return render(request, 'users/profile_edit.html', context)

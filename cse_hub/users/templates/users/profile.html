@@ -53,7 +53,9 @@
 				<img class="card-img-top border-danger" src="{% static 'users/' %}{{pic}}" height="260px;" alt='{{pic}}'>
 				<div class="card-body">
 					<h4 class="card-title text-center">{{user.username}}</h4>
-					<p class="card-text text-center">Some data about user.</p>
+					<p class="card-text text-center">
+						{{ user.email }}
+					</p>
 					{% if user.username == request.user.username%}
 						<a class="btn btn-info btn-block" href="{% url 'user-submissions' user.username %}">My Submissions</a> <br> 
 						<a class="btn btn-info btn-block" href="{% url 'user-profile-edit' user.username %}">Edit Profile</a>
