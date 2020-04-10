@@ -13,7 +13,7 @@
 
 	<h2>{{ problem.quesCode }}</h2>
 	<hr>
-	<strong>Problem Description :</strong> <br><br> <div class="pl-3">{{ problem.description|linebreaks }}</div>
+	<strong>Problem Description :</strong> <br><br> <div class="pl-3">{% autoescape off %} {{ problem.description|linebreaks }} {% endautoescape %}</div>
 	<br><br><hr>
 	Date Created : {{ problem.created_on }}
 	<hr>
