@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm
 from django.contrib import messages
-from .models import Post
+from .models import Post, Comment
 from django.urls import reverse
 
 # displays home page of the discussion forum
@@ -76,3 +76,25 @@ def comment(request, post_id):
 			
 	# after a successful comment, redirect the user to same page with comment updated
 	return HttpResponseRedirect(reverse('display-post', kwargs={'post_id':post_id}))
+
+@login_required
+def delete_comment(request, comment_id):
+	comment = Comment.objects.get(id=comment_id)
+	if comment.author.id != request.user.id:
+		messages.error(request, 'Not allowed')
+	else:
+		comment.delete()
+		messages.success(request, 'Deleted Comment Successfully')
+	# redirect to same page: https://stackoverflow.com/a/35796330/10127204
+	return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@login_required
+def delete_post(request, post_id):
+	post = Post.objects.get(id=post_id)
+	if post.author.id != request.user.id:
+		messages.error(request, 'Not allowed')
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+	else:
+		post.delete()
+		messages.success(request, 'Deleted Post Successfully')
+	return HttpResponseRedirect(reverse('forum-home'))

@@ -33,7 +33,7 @@ def display_submission(request, username, id):
 	solution = submitted_codes.objects.get(id=id)
 	# file_path = os.path.join(settings.BASE_DIR,solution.submission_code.url)
 	file_path = settings.BASE_DIR + solution.submission_code.url
-	print('\nAccessing file: {file_path}\n')
+	print(f'\nAccessing file: {file_path}\n')
 
 	with open(file_path) as f:
 		code = f.read()
@@ -68,6 +68,11 @@ def submit(request, id):
 			cur_prob.total_submissions += 1
 
 			verdict = evaluate(form.submission_code, id)
+			current_submitted_code = submitted_codes.objects.get(id=form.id)
+
+			current_submitted_code.verdict = verdict
+			current_submitted_code.save()
+			
 			if verdict == 'AC':
 				cur_user.profile.problems_solved += 1
 				cur_prob.successful_submissions += 1
@@ -125,14 +130,18 @@ def add_problem(request):
 		form = ProblemForm(request.POST)
 		# if form is valid, save the form and send success message
 		if form.is_valid():
-			form = form.save(commit=False)
-			form.author = request.user
-			form.save()
+			new_problem = form.save(commit=False)
+			new_problem.author = request.user
+			new_problem.save()
+
+			# https://stackoverflow.com/a/38495003/10127204
+			form.save_m2m()
+
 			messages.success(request, 'Added problem statement')
 			return redirect(reverse('add-testcase'))
 		else:
 			# print on backend terminal, for debugging purpose
-			print('\n Error while adding problem:\n{form.errors.as_data()} \n')
+			print(f'\n Error while adding problem:\n{form.errors.as_data()} \n')
 
 			form_error = list(form.errors.as_data().values())[0][0]
 			# if user filled form was invalid, send a error message

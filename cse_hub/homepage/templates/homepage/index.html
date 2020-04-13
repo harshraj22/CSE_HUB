@@ -34,6 +34,7 @@
 			      </a>
 			      <div class="dropdown-menu">
 			        <a class="dropdown-item" href="{% url 'all-problems' %}">All Problems</a>
+			        <a class="dropdown-item" href="{% url 'code-editor' %}">Code Editor</a>
 			        <a class="dropdown-item" href="{% url 'add-problem' %}">Add Problems</a>
 			        <a class="dropdown-item" href="{% url 'add-testcase' %}">Add Testcases</a>
 			      </div>
@@ -85,14 +86,15 @@
 		</div>
 	</nav>
 
-	<div class="container p-5">
+	{% block content-unindent %}
+	
+	{% endblock %}
+
+	<div class="container p-5" id="block_content_div">
 		{% block content %}
 
 		{% endblock %}
 	</div>
-		{% block content-unindent %}
-
-		{% endblock %}
 	<div class="container-fluid">
 		<div class="row">
 			<footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="bottom: 0; position: fixed; width: 100%; color: #e05ea0;">

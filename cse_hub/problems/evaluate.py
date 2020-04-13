@@ -23,8 +23,8 @@ def check(ques, sol, file, time):
 				return 'CE'
 
 	# Just for refrence, prints the full command for file being checked to the terminal
-	print('evaluating using : cat {ques} | {command} {file}')
-	p = subprocess.Popen('cat {ques} | {command} {file}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	print(f'evaluating using : cat {ques} | {command} {file}')
+	p = subprocess.Popen(f'cat {ques} | {command} {file}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 	try:
 		output, error = p.communicate(timeout=time)

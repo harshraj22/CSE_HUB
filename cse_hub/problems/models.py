@@ -16,7 +16,6 @@ class QuestionTag(models.Model):
 	def __repr__(self):
 	 return self.__str__()
 
-
 class Problem(models.Model):
 	'''
 		Class for storing Problems and its testcase and other data
@@ -38,11 +37,10 @@ class Problem(models.Model):
 	time = models.FloatField(choices=[(0.5,0.5),(1.0,1.0)], default=1.0)
 
 	def __str__(self):
-		return '{self.quesCode}'
+		return f'{self.quesCode}'
 
 	def __repr__(self):
-		return '{self.quesCode} by {self.author.username}'
-
+		return f'{self.quesCode} by {self.author.username}'
 
 class Submissions(models.Model):
 	'''
@@ -51,12 +49,14 @@ class Submissions(models.Model):
 	submission_code = models.FileField(upload_to='submissions/')
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	problem_code = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
+	verdict = models.CharField(max_length=5, default='other')
+	created_on = models.DateTimeField(default=datetime.datetime.now)
 
 	def __str__(self):
-		return 'by {self.author.username}'
+		return f'by {self.author.username}'
 
 	def __repr__(self):
-	 return 'Solution for {self.problem_code} by {self.author.username}'
+	 return f'Solution for {self.problem_code} by {self.author.username}'
 
 class TestCase(models.Model):
 	'''
@@ -72,7 +72,7 @@ class TestCase(models.Model):
 		return self.question.quesCode
 
 	def __repr__(self):
-		return 'Testcase for {self.question.quesCode}'
+		return f'Testcase for {self.question.quesCode}'
 
 admin.site.register(QuestionTag)
 admin.site.register(Problem)

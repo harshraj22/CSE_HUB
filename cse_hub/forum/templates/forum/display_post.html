@@ -17,8 +17,8 @@
 	<h2> {{ post.title }} </h2>
 	<br>
 	<div class="pl-5">
-		<p> {{ post.description }} </p>
-		<small><a href="{% url 'user-profile' post.author.username %}" class="btn btn-outline-info btn-sm">{{ post.author.username }}</a> </small>		
+		<p> {% autoescape off %} {{ post.description }} {% endautoescape %} </p>
+		<small><a href="{% url 'user-profile' post.author.username %}" class="btn btn-outline-info btn-sm float-right">{{ post.author.username }}</a> </small>	{% if post.author == request.user %} <a href="{% url 'delete-post' post.id %}" style="text-decoration: none;" class="float-right pr-2"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> &nbsp; </a> {% endif %} 	
 	</div>
 	<hr>
 
@@ -27,7 +27,7 @@
 
 	<div class="mx-5 px-5">
 		{% for comment in comments %}
-			<p> {{ comment.description }} <a href="{% url 'user-profile' comment.author.username %}" class="float-right">{{ comment.author.username }}</a> <hr size="5"> </p>
+			<p> {% autoescape off %} {{ comment.description }} {% endautoescape %}<a href="{% url 'user-profile' comment.author.username %}" class="float-right">{{ comment.author.username }}</a> {% if comment.author == request.user %} <a href="{% url 'delete-comment' comment.id %}" class="float-right" style="text-decoration: none;"> <i class="fa fa-trash" aria-hidden="true"></i> &nbsp; </a> {% endif %} <hr size="5"> </p>
 		{% endfor %}
 	</div>
 	<hr>

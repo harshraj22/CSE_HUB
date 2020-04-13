@@ -17,16 +17,20 @@ To have a website that caters all needs that a CSE UG has.
 * We've got a discussion forum with comments functioning !!
 * User can now edit profile !! (but currently we don't store anything editable)
 * Now user can see/download all submited codes. How cool is that !!
+* User Registration, Now user can SignUp, so no need to go to admin section to create user.(will be implementing verification soon).
+* We've got a good editor built ! It can do a lot of things (see details [here](https://github.com/harshraj22/CSE_HUB/pull/57))
 
-##### What lacks ?
+<details>
+<summary> What lacks ? </summary>
 
 * Only mode of submission is through file upload
 * No work is done for creating a contest
 * frontend for various pages
 * Editing of: problem/ added testcase
-* User registration (signUp)
+</details>
 
-##### Mapped urls :
+<details>
+<summary> Mapped urls :</summary>
 
 * ```admin/```
 * ```''```
@@ -45,6 +49,8 @@ To have a website that caters all needs that a CSE UG has.
 * ```logout```
 * ```forum```
 * ```forum/post/<int:post_id>/```
+* ```editor/```
+</details>
 
 ##### Installation :
 
@@ -54,9 +60,15 @@ To have a website that caters all needs that a CSE UG has.
 use ```python3 manage.py createsuperuser``` to create admin credentials and then go to ```localhost:8080/admin``` after ```python3 manage.py runserver``` to log-in as admin. Create some user accounts/ profile pages/ question tags etc and play along with them, logging in from ```localhost:8080``` (you may use credentials of user you just created, but make sure you've created his/her profile as well from admin pannel)
 
 ##### Screenshots :
-![Screenshot from 2019-12-04 02-29-03](https://user-images.githubusercontent.com/46635452/70089367-f0fab600-163d-11ea-81d9-fa1441ac95ac.png)
+![Screenshot from 2020-04-10 19-44-16](https://user-images.githubusercontent.com/46635452/78997198-b2cd5000-7b63-11ea-9a2a-6942958f3ed8.png)
 
-![Screenshot from 2019-12-04 03-31-38](https://user-images.githubusercontent.com/46635452/70093670-ed1f6180-1646-11ea-9b39-3c318603edbe.png)
+![Screenshot from 2020-04-10 19-44-48](https://user-images.githubusercontent.com/46635452/78997236-ca0c3d80-7b63-11ea-835d-ecfcd8d53fd5.png)
+
+![Screenshot from 2020-04-10 19-42-10](https://user-images.githubusercontent.com/46635452/78996997-6bdf5a80-7b63-11ea-972f-25a303eeaf90.png)
+
+![Screenshot from 2020-04-10 19-35-00](https://user-images.githubusercontent.com/46635452/78996675-b3b1b200-7b62-11ea-8032-68bd97240ef6.png)
+
+![Screenshot from 2020-04-04 00-58-37](https://user-images.githubusercontent.com/46635452/78400079-ae5ce080-7613-11ea-8394-f35e26adb7b1.png)
 
 
 #### Further Reading :
