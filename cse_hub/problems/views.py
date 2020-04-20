@@ -10,15 +10,27 @@ import os
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from .evaluate import evaluate
+from cse_hub.settings import CONTEST
 
 @login_required
 def submissions(request, username):
 	user = User.objects.get(username = username)
+
+	# if user is trying to access other's solutions while contest
+	if CONTEST and username != request.user.username:
+		messages.error(request, 'Not allowed while contest !')
+		return redirect(reverse('home'))
+
 	codes = submitted_codes.objects.filter(author = user)
 
 	return render(request, 'problems/display_submissions.html', {'codes':codes})
 
 def download_submission(request, id):
+	# if user is trying to access other's solutions while contest
+	if CONTEST and id != request.user.id:
+		messages.error(request, 'Not allowed while contest !')
+		return redirect(reverse('home'))
+
 	solution = submitted_codes.objects.get(id=id)
 	file_path = settings.BASE_DIR + solution.submission_code.url
 
@@ -30,6 +42,11 @@ def download_submission(request, id):
 	raise Http404
 
 def display_submission(request, username, id):
+	# if user is trying to access other's solutions while contest
+	if CONTEST and username != request.user.username:
+		messages.error(request, 'Not allowed while contest !')
+		return redirect(reverse('home'))
+
 	solution = submitted_codes.objects.get(id=id)
 	# file_path = os.path.join(settings.BASE_DIR,solution.submission_code.url)
 	file_path = settings.BASE_DIR + solution.submission_code.url
