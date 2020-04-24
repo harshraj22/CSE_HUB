@@ -1,8 +1,8 @@
 import subprocess
 import os
+import multiprocessing
 from django.conf import settings
 from problems.models import Problem, TestCase
-import multiprocessing
 
 def check(ques, sol, file, time, result):
 	'''
@@ -58,7 +58,8 @@ def evaluate(file, id):
 	testcases = cur_problem.testcase_set.all()
 
 	processes = []
-	result = dict()
+	manager = multiprocessing.Manager()
+	result = manager.dict()
 
 	for test in testcases:
 		p = multiprocessing.Process(target=check, args=(str(test.testcase.path), str(test.solution.path), file, cur_problem.time, result))
@@ -69,16 +70,18 @@ def evaluate(file, id):
 	for process in processes:
 		process.join()
 
-	if 'WA' in result.keys():
-		return 'WA'
+	if 'CE' in result.keys():
+		return 'CE'
 	elif 'TLE' in result.keys():
 		return 'TLE'
-	elif 'CE' in result.keys():
-		return 'CE'
+	elif 'WA' in result.keys():
+		return 'WA'
+	elif 'AC' in result.keys():
+		return 'AC'
 
 		# Just for reference
 		# print(f'\n\n\nand returned verdict for current testcase is {cur_verdict}\n\n\n')
 		# if cur_verdict != 'AC':
 		# 	return cur_verdict
 
-	return 'AC'
+	return 'OTHER'
