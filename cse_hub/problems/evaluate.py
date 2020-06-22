@@ -1,9 +1,10 @@
 import subprocess
 import os
+import multiprocessing
 from django.conf import settings
 from problems.models import Problem, TestCase
 
-def check(ques, sol, file, time):
+def check(ques, sol, file, time, result):
 	'''
 		Returns verdict of submitted code being ran on given testcase and corresponding solution
 	'''
@@ -20,6 +21,7 @@ def check(ques, sol, file, time):
 		for line in p.stderr.readlines():
 			# if we got compilation error, terminate
 			if line:
+				result['CE'] = 1
 				return 'CE'
 
 	# Just for refrence, prints the full command for file being checked to the terminal
@@ -29,6 +31,7 @@ def check(ques, sol, file, time):
 	try:
 		output, error = p.communicate(timeout=time)
 	except subprocess.TimeoutExpired:
+		result['TLE'] = 1
 		return 'TLE'
 
 	output = str(output, 'utf-8')
@@ -41,8 +44,10 @@ def check(ques, sol, file, time):
 	print('expected output is :- {exp_output}')
 
 	if output == exp_output:
+		result['AC'] = 1
 		return 'AC'
 
+	result['WA'] = 1
 	return 'WA'
 
 def evaluate(file, id):
@@ -52,12 +57,32 @@ def evaluate(file, id):
 	cur_problem = Problem.objects.get(id=id)
 	testcases = cur_problem.testcase_set.all()
 
+	processes = []
+	manager = multiprocessing.Manager()
+	result = manager.dict()
+
 	for test in testcases:
-		cur_verdict = check(str(test.testcase.path), str(test.solution.path), file, cur_problem.time)
+		p = multiprocessing.Process(target=check, args=(str(test.testcase.path), str(test.solution.path), file, cur_problem.time, result))
+		# cur_verdict = check(str(test.testcase.path), str(test.solution.path), file, cur_problem.time)
+		p.start()
+		processes.append(p)
+
+	for process in processes:
+		process.join()
+
+	if 'CE' in result.keys():
+		return 'CE'
+	elif 'TLE' in result.keys():
+		return 'TLE'
+	elif 'WA' in result.keys():
+		return 'WA'
+	elif 'AC' in result.keys():
+		return 'AC'
 
 		# Just for reference
-		print('\n\n\nand returned verdict for current testcase is {cur_verdict}\n\n\n')
-		if cur_verdict != 'AC':
-			return cur_verdict
 
-	return 'AC'
+		# print(f'\n\n\nand returned verdict for current testcase is {cur_verdict}\n\n\n')
+		# if cur_verdict != 'AC':
+		# 	return cur_verdict
+
+	return 'OTHER'

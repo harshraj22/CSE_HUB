@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 import datetime
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
@@ -62,8 +63,8 @@ class TestCase(models.Model):
 	'''
 	    Class for testcase of problems
 	'''
-	testcase = models.FileField(upload_to='problem_statements/testcases')
-	solution = models.FileField(upload_to='problem_statements/solutions')
+	testcase = models.FileField(upload_to='problem_statements/testcases', validators=[FileExtensionValidator(allowed_extensions=['txt'])])
+	solution = models.FileField(upload_to='problem_statements/solutions', validators=[FileExtensionValidator(allowed_extensions=['txt'])])
 
 	# if problem is deleted, delete this testcase as well
 	question = models.ForeignKey(Problem, on_delete=models.CASCADE)
