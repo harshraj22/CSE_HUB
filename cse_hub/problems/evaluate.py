@@ -17,7 +17,7 @@ def check(ques, sol, file, time, result):
 	# if given file is cpp file, we need to compile before running testcase
 	if str(file).endswith('.cpp'):
 		command = './a.out'
-		p = subprocess.Popen(f'g++ {file}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p = subprocess.Popen('g++ {file}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		for line in p.stderr.readlines():
 			# if we got compilation error, terminate
 			if line:
@@ -35,13 +35,13 @@ def check(ques, sol, file, time, result):
 		return 'TLE'
 
 	output = str(output, 'utf-8')
-	print(f'output is :- {output}')
+	print('output is :- {output}')
 
 	with open(sol) as f:
 		exp_output = f.read()
 
 	# Prints output to the terminal
-	print(f'expected output is :- {exp_output}')
+	print('expected output is :- {exp_output}')
 
 	if output == exp_output:
 		result['AC'] = 1
@@ -80,6 +80,7 @@ def evaluate(file, id):
 		return 'AC'
 
 		# Just for reference
+
 		# print(f'\n\n\nand returned verdict for current testcase is {cur_verdict}\n\n\n')
 		# if cur_verdict != 'AC':
 		# 	return cur_verdict
