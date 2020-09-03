@@ -1,6 +1,6 @@
 # CSE-HUB
 
-Based on [php version](https://github.com/harshraj22/contest)
+Based on [php version](https://github.com/harshraj22/contest) &nbsp; Website under development. Can be accessed [here](https://harshraj22.pythonanywhere.com/)
 
 ##### Idea :
 To have a website that caters all needs that a CSE UG has.
