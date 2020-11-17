@@ -61,17 +61,22 @@ To have a website that caters all needs that a CSE UG has.
 use ```python3 manage.py createsuperuser``` to create admin credentials and then go to ```localhost:8080/admin``` after ```python3 manage.py runserver``` to log-in as admin. Create some user accounts/ profile pages/ question tags etc and play along with them, logging in from ```localhost:8080``` (you may use credentials of user you just created, but make sure you've created his/her profile as well from admin pannel).
 ###### Make sure you create tags before adding questions.
 
-##### Screenshots :
-![Screenshot from 2020-04-10 19-44-16](https://user-images.githubusercontent.com/46635452/78997198-b2cd5000-7b63-11ea-9a2a-6942958f3ed8.png)
+<details>
+  <summary> ER diagram </summary>
+  <img src="https://user-images.githubusercontent.com/46635452/99381606-56988e80-28f1-11eb-9f04-16f83ba68df0.png" alt="Entity Relationship Diagram"></img>
 
-![Screenshot from 2020-04-10 19-44-48](https://user-images.githubusercontent.com/46635452/78997236-ca0c3d80-7b63-11ea-835d-ecfcd8d53fd5.png)
+</details>
 
-![Screenshot from 2020-04-10 19-42-10](https://user-images.githubusercontent.com/46635452/78996997-6bdf5a80-7b63-11ea-972f-25a303eeaf90.png)
 
-![Screenshot from 2020-04-10 19-35-00](https://user-images.githubusercontent.com/46635452/78996675-b3b1b200-7b62-11ea-8032-68bd97240ef6.png)
+<details>
+  <summary> Screenshots : </summary>
+    <img src="https://user-images.githubusercontent.com/46635452/78997198-b2cd5000-7b63-11ea-9a2a-6942958f3ed8.png" alt="user profile"></img>
+    <img src="https://user-images.githubusercontent.com/46635452/78997236-ca0c3d80-7b63-11ea-835d-ecfcd8d53fd5.png" alt="proble statement"></img>
+    <img src="https://user-images.githubusercontent.com/46635452/78996997-6bdf5a80-7b63-11ea-972f-25a303eeaf90.png" alt="submission code"></img>
+    <img src="https://user-images.githubusercontent.com/46635452/78996675-b3b1b200-7b62-11ea-8032-68bd97240ef6.png" alt="new post"></img>
+    <img src="https://user-images.githubusercontent.com/46635452/78400079-ae5ce080-7613-11ea-8394-f35e26adb7b1.png" alt="code editor"></img>
 
-![Screenshot from 2020-04-04 00-58-37](https://user-images.githubusercontent.com/46635452/78400079-ae5ce080-7613-11ea-8394-f35e26adb7b1.png)
-
+</details>
 
 #### Further Reading :
 * [Writing tests](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing)
