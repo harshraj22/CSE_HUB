@@ -64,7 +64,7 @@ use ```python3 manage.py createsuperuser``` to create admin credentials and then
 <details>
   <summary> ER diagram </summary>
   <img src="https://user-images.githubusercontent.com/46635452/99381606-56988e80-28f1-11eb-9f04-16f83ba68df0.png" alt="Entity Relationship Diagram"></img>
-
+  <img src="![SingleLownda](https://user-images.githubusercontent.com/46635452/99569482-b167de00-29f6-11eb-919b-b667ee039450.png)" alt="Execution flow"> </img>
 </details>
 
 
