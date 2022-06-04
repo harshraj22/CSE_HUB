@@ -11,9 +11,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./cse_hub .
 
+EXPOSE 12345
+
 CMD ["echo", "Hello World"]
 CMD ["python3", "manage.py", "migrate" ,"--run-syncdb"]
 CMD ["python3", "manage.py", "makemigrations"]
 CMD ["python3", "manage.py", "migrate"]
 # https://stackoverflow.com/questions/55831728/what-is-statreloader-while-running-django
-CMD ["python3", "manage.py", "runserver", "--noreload"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:12345", "--noreload"]
