@@ -1,6 +1,10 @@
 import subprocess
 import os
 import multiprocessing
+
+import django
+django.setup()
+
 from django.conf import settings
 from problems.models import Problem, TestCase
 
