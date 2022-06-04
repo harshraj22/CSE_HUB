@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ufy1w%%4vucu)@m*ny_ge(x8%7#0*)3vi8+x0i!e#3swsamgyj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -31,18 +31,23 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'forum',
-    'crispy_forms',
-    'mathfilters',
-    'homepage.apps.HomepageConfig',
-    'problems.apps.ProblemsConfig',
-    'users.apps.UsersConfig',
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # local
+    'forum.apps.ForumConfig',
+    'homepage.apps.HomepageConfig',
+    'problems.apps.ProblemsConfig',
+    'users.apps.UsersConfig',
+
+    # third party
+    'crispy_forms',
+    'mathfilters',
     'django_cleanup',
 ]
 
