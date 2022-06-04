@@ -35,4 +35,37 @@
 	</div>
 	<br>
 
+	<nav aria-label="Page navigation" style="bottom: 0;">
+		<ul class="pagination justify-content-center">
+			{% if codes.paginator.num_pages != 1 %}
+				<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+			{% else %}
+				<li class="page-item disabled"><a class="page-link" href="#">First</a></li>
+			{% endif %}
+			{% if codes.has_previous %}
+				<li class="page-item"><a class="page-link" href="?page={{ codes.previous_page_number }}">&laquo;</a></li>
+			{% else %}
+				<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+			{% endif %}
+
+			{% for i in codes.paginator.page_range %}
+				{% if codes.number == i %}
+					<li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+				{% elif codes.number > i|add:"-5" and codes.number < i|add:"+5"%}
+					<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+				{% endif %}
+			{% endfor %}
+			{% if codes.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{ codes.next_page_number }}">&raquo;</a></li>
+			{% else %}
+				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+			{% endif %}
+			{% if codes.paginator.num_pages != page.number %}
+				<li class="page-item"><a class="page-link" href="?page={{ codes.paginator.num_pages }}">Last</a></li>
+			{% else %}
+				<li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+			{% endif %}
+		</ul>
+	</nav>
+
 {% endblock content %}

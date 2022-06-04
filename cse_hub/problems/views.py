@@ -11,6 +11,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from .evaluate import evaluate
 from cse_hub.settings import CONTEST
+from django.core.paginator import Paginator
 
 @login_required
 def submissions(request, username):
@@ -21,9 +22,11 @@ def submissions(request, username):
 		messages.error(request, 'Not allowed while contest !')
 		return redirect(reverse('home'))
 
-	codes = submitted_codes.objects.filter(author = user)
+	codes = submitted_codes.objects.filter(author = user).order_by('created_on')
+	page = request.GET.get('page')
+	p = Paginator(codes, 10).get_page(page)
 
-	return render(request, 'problems/display_submissions.html', {'codes':codes})
+	return render(request, 'problems/display_submissions.html', {'codes': p})
 
 def download_submission(request, id):
 	# if user is trying to access other's solutions while contest
@@ -127,13 +130,16 @@ def problems(request):
 	if 'sortBy' in request.GET.keys() and request.GET['sortBy'] == 'total':
 		problems = Problem.objects.all().order_by('-total_submissions')
 	else:
-		problems = Problem.objects.all()
+		problems = Problem.objects.all().order_by('author_id')
+
+	page = request.GET.get('page')
+	p = Paginator(problems, 8).get_page(page)
 
 	# if request.method == 'GET':
 	# 	order = request.GET.get('order_by',False)
 	# 	if order:
 	# 		problems = problem.objects.all().order_by(str(order))
-	return render(request, 'problems/display_problems.html', {'problems':problems})
+	return render(request, 'problems/display_problems.html', {'problems': p})
 
 def display_problem(request, id):
 	cur_prob = Problem.objects.get(id=id)
