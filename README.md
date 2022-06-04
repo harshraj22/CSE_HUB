@@ -53,7 +53,10 @@ To have a website that caters all needs that a CSE UG has.
 </details>
 
 ##### Installation :
+1. Using docker:
+  check [here](./docs/docker.md)
 
+2. Manual :
 * create a virtual environment and activate it (google it)
 * Install dependencies into it ```pip3 install -r requirements.txt``` or ```python -m pip install -r requirements.txt```.
 * Check out to develop branch.
